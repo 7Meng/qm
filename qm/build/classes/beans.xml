@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/cache 
+http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<context:component-scan base-package="com.xtu.qm">
+	</context:component-scan>
+	
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/qm"></property>
+		<property name="username" value="qm"></property>
+		<property name="password" value="qm"></property>
+		<property name="connection.useUnicode" value="true"></property>
+		<property name="connection.characterEncoding" value="UTF-8"></property>
+	</bean>
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+
+		<property name="annotatedClasses">
+			<list>
+				<value>com.xtu.qm.pojo.AccountInfo</value>
+				<value>com.xtu.qm.pojo.BehaviorInformation</value>
+				<value>com.xtu.qm.pojo.Card</value>
+				<value>com.xtu.qm.pojo.ContentMessage</value>
+				<value>com.xtu.qm.pojo.MailBox</value>
+				<value>com.xtu.qm.pojo.NewsInformation</value>
+				<value>com.xtu.qm.pojo.PersonalSpace</value>
+				<value>com.xtu.qm.pojo.responseInformation</value>
+				<value>com.xtu.qm.pojo.StuInformation</value>
+				<value>com.xtu.qm.pojo.UserImage</value>
+				<value>com.xtu.qm.pojo.UserInfo</value>
+				<value>com.xtu.qm.pojo.zanInformation</value>
+
+			</list>
+		</property>
+
+	</bean>
+
+</beans>
