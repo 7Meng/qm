@@ -55,12 +55,7 @@ public class UserInfo implements Serializable {
 	 */
 	@Column(name="signature",unique=false,nullable=true,length=5000)
 	private String signature;
-	
-	/**
-	 * 用户性别
-	 */
-	@Column(name="sex",unique=false,nullable=true,length=5000)
-	private String sex;
+
 	/**
 	 * 家乡住址
 	 */
@@ -147,7 +142,7 @@ public class UserInfo implements Serializable {
 		super();
 	}
 	public UserInfo(long id, int age, Date birthday, String birthdayType,
-			String signature, String sex, String homeAddress, String interests,
+			String signature, String homeAddress, String interests,
 			String type, String realname, PersonalSpace personalspace,
 			UserImage userimage, List<Card> hasConcern, List<Card> isConcern,
 			List<Card> mutualConcern, List<Card> likelist,
@@ -159,7 +154,6 @@ public class UserInfo implements Serializable {
 		this.birthday = birthday;
 		this.birthdayType = birthdayType;
 		this.signature = signature;
-		this.sex = sex;
 		HomeAddress = homeAddress;
 		this.interests = interests;
 		this.type = type;
@@ -203,12 +197,6 @@ public class UserInfo implements Serializable {
 	}
 	public void setSignature(String signature) {
 		this.signature = signature;
-	}
-	public String getSex() {
-		return sex;
-	}
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 	public String getHomeAddress() {
 		return HomeAddress;
@@ -320,7 +308,7 @@ public class UserInfo implements Serializable {
 	public String toString() {
 		return "UserInfo [id=" + id + ", age=" + age + ", birthday=" + birthday
 				+ ", birthdayType=" + birthdayType + ", signature=" + signature
-				+ ", sex=" + sex + ", HomeAddress=" + HomeAddress
+				+ ", HomeAddress=" + HomeAddress
 				+ ", interests=" + interests + ", type=" + type + ", realname="
 				+ realname + ", personalspace=" + personalspace
 				+ ", userimage=" + userimage + ", hasConcern=" + hasConcern

@@ -1,4 +1,7 @@
-﻿function initAjax(url,argument)
+﻿
+
+//初始化ajax，用post方法发送给服务端
+function initAjax(url,argument)
 {
 	var httpRequest;
 	

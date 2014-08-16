@@ -40,6 +40,15 @@ public class AccountInfo implements Serializable{
 	 */
 	@Column(name="username",unique=false,nullable=true,length=5000)
 	private String username;
+	
+	
+	/**
+	 * 用户性别
+	 */
+	@Column(name="sex",unique=false,nullable=true,length=5000)
+	private String sex;
+	
+	
 	/**
 	 * 用户登录密码
 	 */
@@ -114,13 +123,16 @@ public class AccountInfo implements Serializable{
 	public AccountInfo() {
 		super();
 	}
-	public AccountInfo(long id, String username, String password, String email,
-			String grouptype, int wealthvalue, String role, int creditvalue,
-			int state, Date registerTime, Date blockedTime, int signnumber,
-			UserInfo userinfo, List<UserImage> image) {
+	
+	
+	public AccountInfo(long id, String username, String sex, String password,
+			String email, String grouptype, int wealthvalue, String role,
+			int creditvalue, int state, Date registerTime, Date blockedTime,
+			int signnumber, UserInfo userinfo, List<UserImage> image) {
 		super();
 		this.id = id;
 		this.username = username;
+		this.sex = sex;
 		this.password = password;
 		this.email = email;
 		this.grouptype = grouptype;
@@ -134,6 +146,9 @@ public class AccountInfo implements Serializable{
 		this.userinfo = userinfo;
 		this.image = image;
 	}
+
+
+
 	public long getId() {
 		return id;
 	}
@@ -158,12 +173,7 @@ public class AccountInfo implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getGroup() {
-		return grouptype;
-	}
-	public void setGroup(String grouptype) {
-		this.grouptype = grouptype;
-	}
+	
 	public int getWealthvalue() {
 		return wealthvalue;
 	}
@@ -219,21 +229,33 @@ public class AccountInfo implements Serializable{
 		}
 		return image;
 	}
+	
 	public void setImage(List<UserImage> image) {
 		this.image = image;
 	}
 	
-	@Override
-	public String toString() {
-		return "AccountInfo [id=" + id + ", username=" + username
-				+ ", password=" + password + ", email=" + email + ", group="
-				+ grouptype + ", wealthvalue=" + wealthvalue + ", role=" + role
-				+ ", creditvalue=" + creditvalue + ", state=" + state
-				+ ", registerTime=" + registerTime + ", blockedTime="
-				+ blockedTime + ", signnumber=" + signnumber + ", userinfo="
-				+ userinfo + ", image=" + image + "]";
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getGrouptype() {
+		return grouptype;
+	}
+	public void setGrouptype(String grouptype) {
+		this.grouptype = grouptype;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "AccountInfo [id=" + id + ", username=" + username + ", sex="
+				+ sex + ", password=" + password + ", email=" + email
+				+ ", grouptype=" + grouptype + ", wealthvalue=" + wealthvalue
+				+ ", role=" + role + ", creditvalue=" + creditvalue
+				+ ", state=" + state + ", registerTime=" + registerTime
+				+ ", blockedTime=" + blockedTime + ", signnumber=" + signnumber
+				+ ", userinfo=" + userinfo + ", image=" + image + "]";
+	}
 
 }

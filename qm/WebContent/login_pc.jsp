@@ -43,7 +43,7 @@
 									<label for="loginkeeping">下次自动登陆</label>
                                     <a href="#" style="text-decoration: none;   position: absolute; right: 35px;" >忘记密码？</a>
                                 <p style=" position:relative; right:20px;" class="login button"> 
-                                    <input type="submit" value="登陆" /> 
+                                    <input type="submit" onclick="login()" value="登陆" /> 
 								</p>
                                 
                             </form>

@@ -46,7 +46,7 @@ public class validateusernameServlet extends HttpServlet {
 			response.getWriter().print("no");
 		}else
 		{
-			response.getWriter().print("no");
+			response.getWriter().print("yes");
 		}
 		
 	}
