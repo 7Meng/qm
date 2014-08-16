@@ -19,4 +19,14 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>validateusernameServlet</display-name>
+    <servlet-name>validateusernameServlet</servlet-name>
+    <servlet-class>com.xtu.qm.servlet.validateusernameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>validateusernameServlet</servlet-name>
+    <url-pattern>/validateusernameServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

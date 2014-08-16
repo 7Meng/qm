@@ -1,11 +1,13 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- saved from url=(0014)about:internet -->
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>青檬-登陆</title>
 <link rel="stylesheet" href="css/login_pc.css">
-<script type="text/javascript" src=""></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/login_pc.js"></script>
 </head>
 
 <body style="background-image:url(image/background.jpg); background-size:cover;  font-family:'Microsoft Yahei';">
@@ -58,7 +60,8 @@
                                  
                                 <p style="text-align:center;"> 
                                     
-                                    <input style="width:70%; font-size:14px;"  id="usernamesignup" name="usernamesignup" required type="text" placeholder="输入昵称(无法更改/建议为汉字)" />
+                                    <input style="width:70%; font-size:14px;" onchange="validateusername()" id="usernamesignup" name="usernamesignup" required type="text" placeholder="输入昵称(无法更改/建议为汉字)" />&nbsp;<span id="showerror"></span>
+                                    
                                 </p>
                                 
                                 <p style="text-align:center;"> 

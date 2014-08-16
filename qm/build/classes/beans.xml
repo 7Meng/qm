@@ -16,9 +16,9 @@ http://www.springframework.org/schema/cache/spring-cache.xsd">
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/qm"></property>
-		<property name="username" value="qm"></property>
-		<property name="password" value="qm"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/qingmeng"></property>
+		<property name="username" value="qingmeng"></property>
+		<property name="password" value="qingmeng"></property>
 		<property name="connection.useUnicode" value="true"></property>
 		<property name="connection.characterEncoding" value="UTF-8"></property>
 	</bean>
@@ -41,8 +41,8 @@ http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 		<property name="annotatedClasses">
 			<list>
-				<value>com.xtu.qm.pojo.AccountInfo</value>
 				<value>com.xtu.qm.pojo.BehaviorInformation</value>
+				<value>com.xtu.qm.pojo.AccountInfo</value>
 				<value>com.xtu.qm.pojo.Card</value>
 				<value>com.xtu.qm.pojo.ContentMessage</value>
 				<value>com.xtu.qm.pojo.MailBox</value>
@@ -53,7 +53,6 @@ http://www.springframework.org/schema/cache/spring-cache.xsd">
 				<value>com.xtu.qm.pojo.UserImage</value>
 				<value>com.xtu.qm.pojo.UserInfo</value>
 				<value>com.xtu.qm.pojo.zanInformation</value>
-
 			</list>
 		</property>
 

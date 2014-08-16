@@ -21,7 +21,7 @@ import javax.persistence.Table;
  *
  */
 @Entity(name="BehaviorInformation")
-@Table(name="tbl_hebavior")
+@Table(name="tbl_behavior")
 public class BehaviorInformation implements Serializable{
 
 	/**

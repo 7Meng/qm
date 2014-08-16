@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository("baseDao")
 public class BaseDaoImp<T> extends HibernateDaoSupport implements BaseDao<T>{
 
-    @Resource(name="sessionFacotry")
+    @Resource(name="sessionFactory")
 	public void anyway(SessionFactory sessionFactory)
 	{
 		setSessionFactory(sessionFactory);

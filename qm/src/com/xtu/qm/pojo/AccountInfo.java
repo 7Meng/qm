@@ -22,8 +22,9 @@ import javax.persistence.Table;
  * @author feng
  *
  */
+
 @Entity(name="AccountInfo")
-@Table(name="tbl_accountinfo")
+@Table(name="tbl_accountInfo")
 public class AccountInfo implements Serializable{
 
 	/**
@@ -52,8 +53,8 @@ public class AccountInfo implements Serializable{
 	/**
 	 * 组别
 	 */
-	@Column(name="group",unique=false,nullable=true,length=5000)
-	private String group;
+	@Column(name="grouptype",unique=false,nullable=true,length=5000)
+	private String grouptype;
 	
 	/**
 	 * 用户财富值
@@ -114,7 +115,7 @@ public class AccountInfo implements Serializable{
 		super();
 	}
 	public AccountInfo(long id, String username, String password, String email,
-			String group, int wealthvalue, String role, int creditvalue,
+			String grouptype, int wealthvalue, String role, int creditvalue,
 			int state, Date registerTime, Date blockedTime, int signnumber,
 			UserInfo userinfo, List<UserImage> image) {
 		super();
@@ -122,7 +123,7 @@ public class AccountInfo implements Serializable{
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.group = group;
+		this.grouptype = grouptype;
 		this.wealthvalue = wealthvalue;
 		this.role = role;
 		this.creditvalue = creditvalue;
@@ -158,10 +159,10 @@ public class AccountInfo implements Serializable{
 		this.email = email;
 	}
 	public String getGroup() {
-		return group;
+		return grouptype;
 	}
-	public void setGroup(String group) {
-		this.group = group;
+	public void setGroup(String grouptype) {
+		this.grouptype = grouptype;
 	}
 	public int getWealthvalue() {
 		return wealthvalue;
@@ -226,7 +227,7 @@ public class AccountInfo implements Serializable{
 	public String toString() {
 		return "AccountInfo [id=" + id + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", group="
-				+ group + ", wealthvalue=" + wealthvalue + ", role=" + role
+				+ grouptype + ", wealthvalue=" + wealthvalue + ", role=" + role
 				+ ", creditvalue=" + creditvalue + ", state=" + state
 				+ ", registerTime=" + registerTime + ", blockedTime="
 				+ blockedTime + ", signnumber=" + signnumber + ", userinfo="
