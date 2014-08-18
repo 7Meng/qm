@@ -59,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
 			Loginhist login=new Loginhist();
 			login.addAccountInfo(account);
 			request.getSession().setAttribute("currentlist", login);
-			response.sendRedirect("");
+			response.sendRedirect("test.jsp"+"?"+"username="+account.getUsername());
 		}
 		
 	}
