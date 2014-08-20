@@ -44,12 +44,6 @@ public class TestServlet extends HttpServlet {
 		
 		System.out.println(root.toString());
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		response.getWriter().append(root.toString());
 	}
 }
