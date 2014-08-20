@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript" src="json-minified.js"></script>
+<script type="text/javascript">
+function showHint()
+{
+var currentPersonElement = " ";
+alert('here');
+oboe('TestServlet')
+   .node({
+      '!.person[*]': function( person ){
+         currentPersonElement.append('<div class="person">');
+         currentPersonElement.append('<span class="name">' + person.name + '</span>');
+         currentPersonElement.append('<span class="email">' + person.email + '</span>');
+         alert(currentPersonElement);
+      }
+   })
+   .fail(function() {
+
+      alert('fail!');
+   });
+ alert('here2');
+}
+</script>
+</head>
+<body>
+
+<h3>请在下面的输入框中键入字母（A - Z）：</h3>
+<form action=""> 
+姓氏：<input type="text" id="txt1" onkeyup="showHint()" />
+</form>
+<div id="show"></div> 
+
+</body>
+</html>

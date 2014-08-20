@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/json-minified.js"></script>
+<script type="text/javascript">
+function showHint(i)
+{
+	if (i == 1) {
+		if (window.pageYOffset == document.height)
+			alert('到底啦！！！');
+	}
+	var xmlhttp;
+  	
+	if (window.XMLHttpRequest) 
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+  		xmlhttp=new XMLHttpRequest();
+  	} 
+  	else
+  	{// code for IE6, IE5
+  		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  	}
+	
+	xmlhttp.onreadystatechange=function()
+  	{
+  		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    	{
+    		var obj = jsonParse(xmlhttp.responseText);
+    		var array = obj.persons;
+    		var div = '';
+    		for (var i in array) {
+    			div += '<div class="person" style="border:1px solid black;height:40;width:300;padding:5">';
+    			div += '<span class="name">' + array[i].name + '</span>';
+    			div += '<span class="email">' + array[i].email + '</span>';
+    			div += '</div><br/>';
+    		}
+    		document.getElementById("show").innerHTML += div;
+    	}
+  	};
+  	
+	xmlhttp.open("GET","TestServlet",true);
+	xmlhttp.send();
+}
+</script>
+</head>
+<body onscroll="showHint(1)">
+
+<h3>请在下面的输入框中键入字母（A - Z）：</h3>
+<form action=""> 
+姓氏：<input type="text" id="txt1" onkeyup="showHint(0)" />
+</form>
+<div id="show"></div> 
+
+</body>
+</html>
