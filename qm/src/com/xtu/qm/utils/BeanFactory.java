@@ -13,6 +13,6 @@ public class BeanFactory {
 	
 	public static BaseService getBaseservice()
 	{
-		return (BaseService)MyBeanFactory.getBeanFactroy().getBean("baseService");
+		return (BaseService) MyBeanFactory.getBeanFactroy().getBean("baseService");
 	}
 }
