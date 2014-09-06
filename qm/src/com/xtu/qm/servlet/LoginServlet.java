@@ -1,6 +1,7 @@
 package com.xtu.qm.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.xtu.qm.pojo.AccountInfo;
 import com.xtu.qm.service.UserService;
@@ -47,6 +49,9 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setHeader("context/type", "text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UserService service = BeanFactory.getUserservice();
@@ -54,22 +59,25 @@ public class LoginServlet extends HttpServlet {
 				.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
 		Matcher matcher = pattern.matcher(username);
 		// System.out.println(matcher.matches());
-		if (matcher.matches()) {
+		if (matcher.find()) {
 			AccountInfo accou = service.loginByemail(username, password);
 			if (accou != null) {
-				response.sendRedirect("");
+				response.sendRedirect("test.jsp?username=" + accou.getUsername());
+				session.setAttribute("AccountInfo", accou);
 			} else {
-				response.getWriter().print("email");
+				response.sendRedirect("LoginError.jsp");
 			}
 		} else {
 			AccountInfo aco = service.loginByusername(username, password);
 			if (aco != null) {
-				response.sendRedirect("");
+				response.sendRedirect("test.jsp?username=" + aco.getUsername() );
+				session.setAttribute("AccountInfo", aco);
 			} else {
-				response.getWriter().print("username");
+				response.sendRedirect("LoginError.jsp");	
 			}
 
 		}
+		
 
 	}
 	

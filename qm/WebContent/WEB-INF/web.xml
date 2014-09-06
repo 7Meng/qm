@@ -8,6 +8,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+        <welcome-file>login_pc.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -46,5 +47,13 @@
     <servlet-mapping>
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SettingServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.SettingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SettingServlet</servlet-name>
+        <url-pattern>/SettingServlet</url-pattern>
     </servlet-mapping>
 </web-app>

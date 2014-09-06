@@ -23,7 +23,7 @@
                     
                     <div style=" padding:0px; position:absolute; right:100px; top:100px; width:420px;"  id="wrapper">
                         <div style=" padding:0px;" id="login" class="animate form">
-                            <form   action="loginServlet" autocomplete="on" method="post"> 
+                            <form   action="LoginServlet" autocomplete="on" method="post"> 
                             	<div class="switch">
                                 	<div class="switch1" ><a href="#tologin" style="  font-size:16px; line-height:49px; text-decoration:none; color:#000; padding:14px; border-bottom:3px solid rgb(61, 157, 179);">登陆</a></div>
                                     <div class="switch2" ><a href="#toregister" style=" font-size:16px; line-height:49px; text-decoration:none; color:#999 ">10秒注册</a></div>
@@ -43,7 +43,7 @@
 									<label for="loginkeeping">下次自动登陆</label>
                                     <a href="#" style="text-decoration: none;   position: absolute; right: 35px;" >忘记密码？</a>
                                 <p style=" position:relative; right:20px;" class="login button"> 
-                                    <input type="submit" onclick="login()" value="登陆" /> 
+                                    <input type="submit" value="登陆" />
 								</p>
                                 
                             </form>

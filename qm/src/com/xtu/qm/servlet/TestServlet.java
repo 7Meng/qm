@@ -1,6 +1,8 @@
 package com.xtu.qm.servlet;
 
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,12 @@ public class TestServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		//String q = request.getParameter("q");
-		
+		Enumeration e = request.getParameterNames();
+		while (e.hasMoreElements()) {
+			Object param = e.nextElement();
+			System.out.println(param + "---" + request.getParameter(param.toString()));
+		}
+/*		
 		JsonObject root = new JsonObject();
 		
 		JsonObject json = new JsonObject();
@@ -44,6 +51,7 @@ public class TestServlet extends HttpServlet {
 		
 		System.out.println(root.toString());
 		
-		response.getWriter().append(root.toString());
+		response.getWriter().append(root.toString());*/
+		response.sendRedirect("setting.jsp");
 	}
 }

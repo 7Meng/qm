@@ -20,7 +20,7 @@ public class UserDaoImp  extends BaseDaoImp<AccountInfo> implements UserDao{
 		ql.add(Restrictions.eq("password", password));
 		try{
 		List<AccountInfo> list=ql.list();
-		if(list!=null){
+		if(list != null && list.size() != 0){
 			AccountInfo accountInfo=list.get(0);
 			return accountInfo;
 		}
@@ -40,7 +40,7 @@ public class UserDaoImp  extends BaseDaoImp<AccountInfo> implements UserDao{
 		ql.add(Restrictions.eq("password", password));
 		try{
 		List<AccountInfo> list=ql.list();
-		if(list!=null){
+		if(list != null && list.size() != 0){
 			AccountInfo accountInfo=list.get(0);
 			return accountInfo;
 		}
