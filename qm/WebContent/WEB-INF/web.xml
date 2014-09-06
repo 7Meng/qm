@@ -40,4 +40,20 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SettingServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.SettingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SettingServlet</servlet-name>
+        <url-pattern>/SettingServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

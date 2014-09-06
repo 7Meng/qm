@@ -18,6 +18,11 @@ import javax.persistence.Table;
 public class StuInformation implements Serializable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * —ßºÆ–≈œ¢ID
 	 */
 	@Id

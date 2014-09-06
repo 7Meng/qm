@@ -51,6 +51,12 @@ public class UserInfo implements Serializable {
 	private String birthdayType;
 	
 	/**
+	 * 学籍信息
+	 */
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name = "stuInfoId")
+	private StuInformation stuInfo;
+	/**
 	 * 用户个性签名
 	 */
 	@Column(name="signature",unique=false,nullable=true,length=5000)
@@ -58,18 +64,21 @@ public class UserInfo implements Serializable {
 
 	/**
 	 * 家乡住址
+	 * 字符串格式：province&&city
 	 */
 	@Column(name="homeaddress",unique=false,nullable=true,length=5000)
 	private String HomeAddress;
 	
 	/**
 	 * 用户兴趣爱好
+	 * 字符串格式：A&&B&&C
 	 */
 	@Column(name="interests",unique=false,nullable=true,length=5000)
 	private String interests;
 	/**
 	 * 用户个人标签
 	 * 如 娇小型
+	 * 字符串格式：TypeA&&TypeB&&TypeC
 	 */
 	@Column(name="type",unique=false,nullable=true,length=5000)
 	private String type;
@@ -93,6 +102,14 @@ public class UserInfo implements Serializable {
 	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="userimageid")
 	private UserImage userimage;
+	
+	/**
+	 * 用户头像，区别于生活照
+	 */
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@JoinColumn(name="userLogoid")
+	private UserImage userLogo;
+	
 	/**
 	 * 已关注列表
 	 */
@@ -147,7 +164,7 @@ public class UserInfo implements Serializable {
 			UserImage userimage, List<Card> hasConcern, List<Card> isConcern,
 			List<Card> mutualConcern, List<Card> likelist,
 			List<Card> mutuallikelist, List<Card> islikelist,
-			List<Card> blacklist) {
+			List<Card> blacklist, UserImage userLogo) {
 		super();
 		this.id = id;
 		this.age = age;
@@ -167,6 +184,7 @@ public class UserInfo implements Serializable {
 		this.mutuallikelist = mutuallikelist;
 		this.islikelist = islikelist;
 		this.blacklist = blacklist;
+		this.userLogo = userLogo;
 	}
 	public long getId() {
 		return id;
@@ -304,6 +322,23 @@ public class UserInfo implements Serializable {
 	public void setBlacklist(List<Card> blacklist) {
 		this.blacklist = blacklist;
 	}
+	
+	public void setUserLogo(UserImage logo) {
+		this.userLogo = logo;
+	}
+	
+	public UserImage getUserLogo() {
+		return this.userLogo;
+	}
+	
+	public StuInformation getStuInfo() {
+		return this.stuInfo;
+	}
+	
+	public void setStuInfo(StuInformation info) {
+		this.stuInfo = info;
+	}
+	
 	@Override
 	public String toString() {
 		return "UserInfo [id=" + id + ", age=" + age + ", birthday=" + birthday

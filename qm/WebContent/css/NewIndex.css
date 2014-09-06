@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+
+#nav_space {
+				float:right; width:10px; height:10px; margin-right:100px	 }
+#nav_fixed {
+				position:fixed;left:0px;top:0px; width:100%; z-index:100;    }
+div.main_space { height:40px; width:100% }
+#header_bg {
+			 	background-image: url(http://cnc.i.gtimg.cn/qzone/space_item/orig/7/101239_top.jpg);background-repeat: no-repeat no-repeat;  height:400px;background-position: 50% 0%; margin-top:40px; width:100%; position:absolute; }
+div.main_color {
+				width:100%;background-color:rgb(4,41,93)}
+div.main_width {
+				border: 0px solid #000;padding: 60px 0; position:relative;  margin:0 auto; width:850px;  }
+div.layout_left {
+				width:600px; min-height:100px;}
+div.layout_right {
+				width:232px; float:right; min-height:100px;}
+img.lifeImage {
+				max-width:300px; max-height:300px; }
+
