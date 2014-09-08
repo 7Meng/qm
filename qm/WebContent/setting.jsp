@@ -164,7 +164,7 @@ if (stuInfo.getEntranceYear() != null) {
                               		<form action="UploadLifePhotoServlet" method="post" enctype="multipart/form-data">
                               		<input type="hidden" name="action" value="SignaturePicture"/>
                                       <label class="label">签名</label><textarea name="signature" rows="5" class="input" placeholder="大笔一挥，留下您的签名。(少于140字)"><%=
-                                    		  user.getSignature() != null ? user.getSignature(): null
+                                    		  user.getSignature() != null ? user.getSignature(): ""
                                       %></textarea>
                                       <br />
                                       <label class="label">生活照</label>
