@@ -1,5 +1,7 @@
 package com.xtu.qm.servlet;
 
+import static java.lang.System.out;
+
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Enumeration;
@@ -18,9 +20,11 @@ import com.xtu.qm.pojo.UserInfo;
 import com.xtu.qm.service.UserService;
 import com.xtu.qm.utils.BeanFactory;
 
+
 public class SettingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Pattern DECIMAL = Pattern.compile("\\d+");
+	private static final Pattern DECIMAL = Pattern.compile("\\d+");
+
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -36,15 +40,16 @@ public class SettingServlet extends HttpServlet {
 		UserService service = BeanFactory.getUserservice();
 		String action = request.getParameter("action");
 		
-		Enumeration e = request.getParameterNames();
-		while (e.hasMoreElements()) {
-			Object param = e.nextElement();
-			System.out.println(param + "---" + request.getParameter(param.toString()));
-		}
-		
 		if ("PersonalInfo".equals(action)) {
+			Enumeration e = request.getParameterNames();
+			while (e.hasMoreElements()) {
+				Object param = e.nextElement();
+				System.out.println(param + "---" + request.getParameter(param.toString()));
+			}
+			
 			doSetPersonalInfo(request, response, service);
 		}
+		
 		
 		response.sendRedirect("setting.jsp");
 	}
