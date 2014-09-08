@@ -161,11 +161,14 @@ if (stuInfo.getEntranceYear() != null) {
                         <div id="setSignature" class="panel border-sub layout_left bg-white " style="margin-top:100px;">                    
                         	  <div class="panel-head  border-sub bg-sub bg-inverse"><strong>签名&nbsp;生活照</strong></div>
                               <div class="panel-body ">
-                              		<form>
-                                      <label class="label">签名</label><textarea rows="5" class="input" placeholder="大笔一挥，留下您的签名。(少于140字)"></textarea>
+                              		<form action="UploadLifePhotoServlet" method="post" enctype="multipart/form-data">
+                              		<input type="hidden" name="action" value="SignaturePicture"/>
+                                      <label class="label">签名</label><textarea name="signature" rows="5" class="input" placeholder="大笔一挥，留下您的签名。(少于140字)"><%=
+                                    		  user.getSignature() != null ? user.getSignature(): null
+                                      %></textarea>
                                       <br />
                                       <label class="label">生活照</label>
-                                      		<img class="lifeImage radius img-border " src="lifephoto.jpg" />
+                                      		<img class="lifeImage radius img-border " src="<%= user.getUserimage() != null? user.getUserimage().getBigimageUrl(): null %>" />
                                             <a class="button button-small input-file bg-green margin-left" href="javascript:void(0);">
                                             	+ 浏览文件
                                             <input size="100" type="file" name="logo" />

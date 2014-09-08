@@ -56,4 +56,15 @@
         <servlet-name>SettingServlet</servlet-name>
         <url-pattern>/SettingServlet</url-pattern>
     </servlet-mapping>
+    <listener>
+        <listener-class>org.apache.commons.fileupload.servlet.FileCleanerCleanup</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>UploadLifePhotoServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.UploadLifePhotoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadLifePhotoServlet</servlet-name>
+        <url-pattern>/UploadLifePhotoServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
