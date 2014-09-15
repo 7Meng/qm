@@ -96,9 +96,7 @@ public class RegisterServlet extends HttpServlet {
 			login.addAccountInfo(account);
 			session.setAttribute("currentlist", login);
 			session.setAttribute("AccountInfo", account);
-			response.sendRedirect("test.jsp"+"?"+"username="+account.getUsername());
+			response.sendRedirect("dynamic.jsp");
 		}
-		
 	}
-
 }

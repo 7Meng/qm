@@ -116,6 +116,7 @@ public class UserInfo implements Serializable {
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="userinfoid")
 	private List<Card> hasConcern;
+	
 	/**
 	 * 被关注列表
 	 */
@@ -351,9 +352,5 @@ public class UserInfo implements Serializable {
 				+ mutualConcern + ", likelist=" + likelist
 				+ ", mutuallikelist=" + mutuallikelist + ", islikelist="
 				+ islikelist + ", blacklist=" + blacklist + "]";
-	}
-	
-	
-	
-	
+	}	
 }

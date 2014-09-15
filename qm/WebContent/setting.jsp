@@ -90,7 +90,7 @@ if (stuInfo.getEntranceYear() != null) {
 			<div class="bg-sub bg-inverse  nav-navicon text-big " id="nav-bg1">
 			  <ul class="nav nav-inline nav-menu  clearfix ">
                   <li class="nav-head text-large float-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青檬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                  <li class="active float-left"><a href="#"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
+                  <li class="float-left"><a href="#"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
                   <li class="float-left"><a href="#"><span class="icon-group (alias)"></span>&nbsp;一起</a></li>
                   <li class="float-left"><a href="#"><span class="icon-search"></span>&nbsp;发现</a></li>
                   <li class="float-left"><a href="#"><span class="icon-list-ul"></span>&nbsp;应用<span class="arrow"></span></a>
@@ -216,11 +216,11 @@ if (stuInfo.getEntranceYear() != null) {
                                         <option><%= entranceYear != -1 ? entranceYear: "" %></option>
                                     </select><br />
                                     <label class="label">兴趣：</label>
-                                    	<div class="button-group border-main  checkbox ">
+                                    	<div class="button-group button-small border-main  checkbox ">
                                     	<% 
                                     	 	for (String interest: INTERESTS) {
                                     	%>
-                                          <label class="button <%= interestsSet.contains(interest)? "active": "" %>">
+                                          <label class="button button-small <%= interestsSet.contains(interest)? "active": "" %>">
                                           	<input name="interests" value="<%= interest %>" type="checkbox" <%= interestsSet.contains(interest)? "checked=\"checked\"": "" %>/><%= interest %>
                                           </label>
                                         <% 
@@ -228,11 +228,11 @@ if (stuInfo.getEntranceYear() != null) {
                                          %>
                                         </div><br /><br />
                                     <label class="label">标签：</label>                                 		
-                                    	<div class="button-group border-main  checkbox ">
+                                    	<div class="button-group  button-small border-main  checkbox ">
                                     	<% // 
                                     		for (String type: TYPES) {
                                     	 %>
-                                          <label class="button <%= typesSet.contains(type)? "active": "" %>">
+                                          <label class="button button-small <%= typesSet.contains(type)? "active": "" %>">
                                           	<input name="types" value="<%= type %>" type="checkbox" <%= typesSet.contains(type) ? "checked=\"checked\"" : "" %>"/><%= type %>
                                           </label>
                                         <%
@@ -243,34 +243,60 @@ if (stuInfo.getEntranceYear() != null) {
                                   </form>
                               </div>
                         </div>     
-                        <!--隐私设置-->
+						<!--隐私设置-->
                         <div id="setHead" class="panel border-sub layout_left bg-white " style="margin-top:100px;"> 
                               <div class="panel-head  border-sub bg-sub "><strong >隐私设置</strong>
                               		
                               </div>
-                              <div class="panel-body">面板内容
+                              <div class="panel-body">
+                              		<div class="form-group">
+                                        <label >是否允许别人看到我的历史动态</label>
+                                        <div class="field margin-big-left" style="display:inline">
+                                          <div class="button-group radio">
+                                            <label class="button button-little active"><input name="pintuer" value="yes" checked="checked" type="radio"><span class="icon icon-check"></span> 允许</label>
+                                            <label class="button button-little "><input name="pintuer" value="no" type="radio"><span class="icon icon-times"></span> 不允许</label>
+                                          </div>
+                                        </div><br /><br />
+                                        <label >是否允许别人在“发现-搜索”里发现我</label>
+                                        <div class="field margin-big-left" style="display:inline">
+                                          <div class="button-group radio">
+                                            <label class="button button-little active"><input name="pintuer" value="yes" checked="checked" type="radio"><span class="icon icon-check"></span> 允许</label>
+                                            <label class="button button-little "><input name="pintuer" value="no" type="radio"><span class="icon icon-times"></span> 不允许</label>
+                                          </div>
+                                        </div><br /><br />
+                                        <label >是否接收漂流瓶</label>
+                                        <div class="field margin-big-left" style="display:inline">
+                                          <div class="button-group radio">
+                                            <label class="button button-little active"><input name="pintuer" value="yes" checked="checked" type="radio"><span class="icon icon-check"></span> 接收</label>
+                                            <label class="button button-little "><input name="pintuer" value="no" type="radio"><span class="icon icon-times"></span> 拒绝</label>
+                                          </div>
+                                        </div><br /><br />
+                                        
+                                        <label >每天至多收到多少位新朋友的私信</label>
+                                        <input type="text" class="input input-small margin-big-left" style="display:inline; width:100px" placeholder="默认50" /> 
+                                    </div>
                               <br />
                               <button class="button   bg-green padding-left padding-right"><span class="icon-check"></span>&nbsp;确认修改</button>
                               </div>
                         </div>     
-                        <!--其他设置-->
-                        <div id="setHead" class="panel border-sub layout_left bg-white " style="margin-top:100px;"> 
-                              <div class="panel-head  border-sub bg-sub "><strong >其他设置</strong>
-                              		
-                              </div>
-                              <div class="panel-body">面板内容
-                              <br />
-                              <button class="button   bg-green padding-left padding-right"><span class="icon-check"></span>&nbsp;确认修改</button>
-                              </div>
-                        </div>     
+                        <!--其他设置 暂时去掉-->
+                    
                         <!--实名认证-->
                         <div id="setHead" class="panel border-sub layout_left bg-white " style="margin-top:100px;"> 
                               <div class="panel-head  border-sub bg-sub "><strong >实名认证</strong>
                               		
                               </div>
-                              <div class="panel-body">面板内容
+                              <div class="panel-body">
+                              		<label class="label text-main">我们想过很多种实名认证的办法，最后选择使用学号和密码在教务管理系统进行验证的方式。我们承诺不会保存您的学号和密码，只获取学号和密码是否匹配这一结果。</label>
+                              
+                              <label class="label">学号：</label>
+                              <input type="text" class="input" placeholder="" />
                               <br />
-                              <button class="button   bg-green padding-left padding-right"><span class="icon-check"></span>&nbsp;确认修改</button>
+                              <label class="label">密码：</label>
+                              <input type="text" class="input" placeholder="" />
+                              <br />
+                              
+                              <button class="button   bg-green padding-left padding-right"><span class="icon-check"></span>&nbsp;获取验证结果</button>
                               </div>
                         </div>
                     
@@ -281,16 +307,6 @@ if (stuInfo.getEntranceYear() != null) {
                     
                 </div><!--main-width-->
             </div><!--main-color-->
-             
-            
-            
-            
-            
-            
-            
-            
-    
-
 	</div><!--！所有-->
 
 <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>

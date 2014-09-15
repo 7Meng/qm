@@ -70,17 +70,11 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			AccountInfo aco = service.loginByusername(username, password);
 			if (aco != null) {
-				response.sendRedirect("test.jsp?username=" + aco.getUsername() );
+				response.sendRedirect("dynamic.jsp");
 				session.setAttribute("AccountInfo", aco);
 			} else {
 				response.sendRedirect("LoginError.jsp");	
 			}
-
 		}
-		
-
 	}
-	
-	
-
 }
