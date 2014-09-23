@@ -53,8 +53,7 @@ public class PersonalSpace implements Serializable{
 	/**
 	 * 个人空间有多个动态
 	 */
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="pspaceid")
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="author")
 	private List<NewsInformation> news;
 	/**
 	 * 个人空间有多个行为

@@ -90,7 +90,7 @@ if (stuInfo.getEntranceYear() != null) {
 			<div class="bg-sub bg-inverse  nav-navicon text-big " id="nav-bg1">
 			  <ul class="nav nav-inline nav-menu  clearfix ">
                   <li class="nav-head text-large float-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青檬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                  <li class="float-left"><a href="#"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
+                  <li class="float-left"><a href="dynamic.jsp"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
                   <li class="float-left"><a href="#"><span class="icon-group (alias)"></span>&nbsp;一起</a></li>
                   <li class="float-left"><a href="#"><span class="icon-search"></span>&nbsp;发现</a></li>
                   <li class="float-left"><a href="#"><span class="icon-list-ul"></span>&nbsp;应用<span class="arrow"></span></a>
@@ -108,12 +108,7 @@ if (stuInfo.getEntranceYear() != null) {
                   </li>
                   <li class="nav-more"><a href="#"><span class="icon-gear (alias)"></span></a>
                   	<ul class="drop-menu text-default">
-                      <li><a href="#">头像</a></li>
-                      <li><a href="#">签名 生活照</a></li>
-                      <li><a href="#">个人信息</a></li>
-                      <li><a href="#">隐私设置</a></li>
-                      <li><a href="#">其他设置</a></li>
-                      <li><a href="#">实名认证</a></li>
+                      <li><a href="setting.jsp">个人设置</a></li>
                       <li><a href="#">我的二维码</a></li>
                       <li><a href="#">关于我们</a></li>
                       <li><a href="#">退出登录</a></li>

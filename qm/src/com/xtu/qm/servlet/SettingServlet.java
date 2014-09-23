@@ -1,10 +1,7 @@
 package com.xtu.qm.servlet;
 
-import static java.lang.System.out;
-
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,12 +38,6 @@ public class SettingServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		
 		if ("PersonalInfo".equals(action)) {
-			Enumeration e = request.getParameterNames();
-			while (e.hasMoreElements()) {
-				Object param = e.nextElement();
-				System.out.println(param + "---" + request.getParameter(param.toString()));
-			}
-			
 			doSetPersonalInfo(request, response, service);
 		}
 		

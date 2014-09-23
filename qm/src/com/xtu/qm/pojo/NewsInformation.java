@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,6 +33,14 @@ public class NewsInformation implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="newsid")
 	private long id;
+	
+	/**
+	 * 发布者
+	 */
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="accountId")
+	private AccountInfo author;
+	
 	/**
 	 * 发布时间
 	 */
@@ -57,8 +66,11 @@ public class NewsInformation implements Serializable{
 	 * 发布类型
 	 * 如动态 失物招领
 	 */
+	public enum NewsInfoType {
+		DYNAMIC
+	}
 	@Column(name="type",unique=false,nullable=true,length=5000)
-	private String type;
+	private NewsInfoType type;
 	/**
 	 * 发布者名片信息
 	 */
@@ -86,8 +98,8 @@ public class NewsInformation implements Serializable{
 
 	public NewsInformation(long id, Date releasetime,
 			List<UserImage> userimage, int readnumber, String content,
-			String type, Card card, List<zanInformation> zaninform,
-			List<responseInformation> response) {
+			NewsInfoType type, Card card, List<zanInformation> zaninform,
+			List<responseInformation> response, AccountInfo author) {
 		super();
 		this.id = id;
 		this.releasetime = releasetime;
@@ -144,11 +156,11 @@ public class NewsInformation implements Serializable{
 		this.content = content;
 	}
 
-	public String getType() {
+	public NewsInfoType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(NewsInfoType type) {
 		this.type = type;
 	}
 
@@ -182,6 +194,14 @@ public class NewsInformation implements Serializable{
 
 	public void setResponse(List<responseInformation> response) {
 		this.response = response;
+	}
+	
+	public void setAuthor(AccountInfo author) {
+		this.author = author;
+	}
+	
+	public AccountInfo getAuthor() {
+		return this.author;
 	}
 
 	@Override

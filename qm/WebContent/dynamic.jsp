@@ -24,7 +24,7 @@ UserInfo user = account.getUserinfo();
 			<div class="bg-sub bg-inverse  nav-navicon text-big " id="nav-bg1">
 			  <ul class="nav nav-inline nav-menu  clearfix ">
                   <li class="nav-head text-large float-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青檬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                  <li class="active float-left"><a href="#"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
+                  <li class="active float-left"><a href="dynamic.jsp"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
                   <li class="float-left"><a href="#"><span class="icon-group (alias)"></span>&nbsp;一起</a></li>
                   <li class="float-left"><a href="#"><span class="icon-search"></span>&nbsp;发现</a></li>
                   <li class="float-left"><a href="#"><span class="icon-list-ul"></span>&nbsp;应用<span class="arrow"></span></a>
@@ -43,12 +43,7 @@ UserInfo user = account.getUserinfo();
                   </li>
                   <li class="nav-more"><a href="#"><span class="icon-gear (alias)"></span></a>
                   	<ul class="drop-menu text-default">
-                      <li><a href="#">头像</a></li>
-                      <li><a href="#">签名 生活照</a></li>
-                      <li><a href="#">个人信息</a></li>
-                      <li><a href="#">隐私设置</a></li>
-                      <li><a href="#">其他设置</a></li>
-                      <li><a href="#">实名认证</a></li>
+                      <li><a href="setting.jsp">个人设置</a></li>
                       <li><a href="#">我的二维码</a></li>
                       <li><a href="#">关于我们</a></li>
                       <li><a href="#">退出登录</a></li>
@@ -81,8 +76,10 @@ UserInfo user = account.getUserinfo();
                     <!--左边布局--> 
 						<!--发表栏-->
                         <div id="publish" class="layout_left bg-white padding radius border border-sub" style="margin-top:100px;"> 
-                              <textarea rows="4" class="input" placeholder="大笔一挥，留下您的精彩动态..."></textarea>
-                              <button class="button   bg-green padding-big-left padding-big-right float-right margin-top text-big"><span class="icon-paper-plane-o"></span>&nbsp;发表</button>
+                        	<form method="post" action="PublishServlet">
+                              <textarea name="dynamicMsg" rows="4" class="input" placeholder="大笔一挥，留下您的精彩动态..."></textarea>
+                              <button class="button bg-green padding-big-left padding-big-right float-right margin-top text-big"><span class="icon-paper-plane-o"></span>&nbsp;发表</button>
+                            </form>
                                   <div class="button-group  margin-top">
                                     <button type="button" class="button button-small border-blue icon-smile-o text-blue text-default"> 表情</button>
                                     <button type="button" class="button button-small border-green icon-image (alias) text-green text-default"> 图片</button>
