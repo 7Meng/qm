@@ -83,4 +83,12 @@
         <servlet-name>DynamicShowServlet</servlet-name>
         <url-pattern>/DynamicShowServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DynamicUpdateServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.DynamicUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DynamicShowServlet</servlet-name>
+        <url-pattern>/DynamicShowServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

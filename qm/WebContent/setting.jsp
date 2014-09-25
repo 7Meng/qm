@@ -90,7 +90,7 @@ if (stuInfo.getEntranceYear() != null) {
 			<div class="bg-sub bg-inverse  nav-navicon text-big " id="nav-bg1">
 			  <ul class="nav nav-inline nav-menu  clearfix ">
                   <li class="nav-head text-large float-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青檬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                  <li class="float-left"><a href="dynamic.jsp"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
+                  <li class="float-left"><a href="DynamicShowServlet"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
                   <li class="float-left"><a href="#"><span class="icon-group (alias)"></span>&nbsp;一起</a></li>
                   <li class="float-left"><a href="#"><span class="icon-search"></span>&nbsp;发现</a></li>
                   <li class="float-left"><a href="#"><span class="icon-list-ul"></span>&nbsp;应用<span class="arrow"></span></a>

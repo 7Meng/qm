@@ -62,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 		if (matcher.find()) {
 			AccountInfo accou = service.loginByemail(username, password);
 			if (accou != null) {
-				response.sendRedirect("test.jsp?username=" + accou.getUsername());
+				response.sendRedirect("DynamicShowServlet" + accou.getUsername());
 				session.setAttribute("AccountInfo", accou);
 			} else {
 				response.sendRedirect("LoginError.jsp");
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			AccountInfo aco = service.loginByusername(username, password);
 			if (aco != null) {
-				response.sendRedirect("dynamic.jsp");
+				response.sendRedirect("DynamicShowServlet");
 				session.setAttribute("AccountInfo", aco);
 			} else {
 				response.sendRedirect("LoginError.jsp");	

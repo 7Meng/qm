@@ -1,6 +1,6 @@
 package com.xtu.qm.service;
 
-import java.util.Set;
+import java.util.List;
 
 public interface PageService {
 	/**
@@ -9,5 +9,5 @@ public interface PageService {
 	 * @param pageSize
 	 * @return 消息集合
 	 */
-	public <T> Set<T> getOnePage(Class<T> type, int offset, int pageSize);
+	public <T> List<T> getOnePage(Class<T> type, int offset, int pageSize);
 }

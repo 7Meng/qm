@@ -49,7 +49,7 @@ public class NewsInformation implements Serializable{
 	/**
 	 * 发布图片列表
 	 */
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="newsid")
 	private List<UserImage> userimage;
 	/**

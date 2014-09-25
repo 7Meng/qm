@@ -106,7 +106,7 @@ public class UserInfo implements Serializable {
 	/**
 	 * 用户头像，区别于生活照
 	 */
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="userLogoid")
 	private UserImage userLogo;
 	

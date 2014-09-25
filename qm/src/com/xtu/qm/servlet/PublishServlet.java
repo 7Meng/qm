@@ -60,6 +60,6 @@ public class PublishServlet extends HttpServlet {
 		// 只需保存news即可
 		service.save(news);
 		
-		response.sendRedirect("dynamic.jsp");
+		response.sendRedirect("DynamicShowServlet");
 	}
 }

@@ -5,6 +5,12 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 AccountInfo account = (AccountInfo) session.getAttribute("AccountInfo");
 UserInfo user = account.getUserinfo();
+int offset = 0;
+
+List<NewsInformation> list = (ArrayList<NewsInformation>) request.getAttribute("DynamicSet");
+if (list == null) {
+	list = new ArrayList<NewsInformation>();
+}
 %>
 
 <!doctype html>
@@ -24,7 +30,7 @@ UserInfo user = account.getUserinfo();
 			<div class="bg-sub bg-inverse  nav-navicon text-big " id="nav-bg1">
 			  <ul class="nav nav-inline nav-menu  clearfix ">
                   <li class="nav-head text-large float-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;青檬&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-                  <li class="active float-left"><a href="dynamic.jsp"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
+                  <li class="active float-left"><a href="DynamicShowServlet"><span class="icon-comments-o"></span>&nbsp;动态</a></li>
                   <li class="float-left"><a href="#"><span class="icon-group (alias)"></span>&nbsp;一起</a></li>
                   <li class="float-left"><a href="#"><span class="icon-search"></span>&nbsp;发现</a></li>
                   <li class="float-left"><a href="#"><span class="icon-list-ul"></span>&nbsp;应用<span class="arrow"></span></a>
@@ -131,119 +137,43 @@ UserInfo user = account.getUserinfo();
                             </div>
                             <div style="height:30px;"></div>
                         </div> 
-                        <!--单一图片 高度-->
+                        <% for (NewsInformation dynamic: list) {
+                        	offset++;
+                        	
+                        	AccountInfo dynamicAccount = dynamic.getAuthor();
+                        	UserInfo dynamicUser = dynamicAccount.getUserinfo();
+                        	
+                        	// 计算时间
+                        	Calendar cal = Calendar.getInstance();
+                        	cal.setTime(dynamic.getReleasetime());
+                        	String hour = "" + cal.get(Calendar.HOUR_OF_DAY);
+                        	String minute;
+                            if (cal.get(Calendar.MINUTE) > 10) {
+                            	minute = "" + cal.get(Calendar.MINUTE);
+                            } else {
+                            	minute = "0" + cal.get(Calendar.MINUTE);
+                            }
+                            String date = hour + ":" + minute;
+                        %>
+                        <!--动态-->
                         <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
                         	<!--头条字样--> 
                             <button class=" button-small float-right button bg-red hidden ">今日头条</button>
-                        	<img class="img-border radius float-left point" width="60" src="u=4179546593,3631561214&fm=58.jpg" />
-                            <a class="margin-left text-big" style="top:0px;" href="#">Jay超级粉丝</a>
+                        	<img class="img-border radius float-left point" width="60" src="<%=dynamicUser.getUserLogo().getSmallimageUrl() %>" />
+                            <a class="margin-left text-big" style="top:0px;" href="#"><%=dynamicAccount.getUsername() %></a>
                             <br />
-                            <label class="height-big margin-left text-small text-main">11:20</label><label class="text-small margin-left text-main">阅读(272)</label>
+                            <label class="height-big margin-left text-small text-main">
+                            	<%=date %>
+                            </label>
+                            <label class="text-small margin-left text-main">阅读(<%=dynamic.getReadnumber() %>)</label>
                             <!--内容部分-->
                             <div class="dynamic_content bg-white padding radius border " >
-                            	<label>4.单一图片最高高度为220px</label><br />
-                            	<div class="border point form-inline margin-small-top"  >
-                                	<img class="dynamic_img_big" src="b24343c5a0f65dc4af2b03e74577d0030e9cce71185fc-gArxKw_fw320.jpg">	
-                                </div> 
-                            </div>
-                            <!--操作部分-->
-                            <div class="button-group margin-top dynamic_btn_group">
-                                    <a class="text-blue point margin-big-right"><span class="icon-thumbs-o-up margin-small-right"></span>赞3(7)</a>
-                                    <a class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(4)</a>
-                                    <a class="text-yellow point margin-big-right"><span class="icon-file-image-o margin-small-right"></span>关注Ta</a>
-                                    <a onMouseOver="document.getElementById('yincang2').style.display = 'block'" onMouseOut="document.getElementById('yincang2').style.display = 'none'" class="text-red point margin-big-right"><span class="icon-ellipsis-v margin-small-right"></span>其他<span class="arrow"></span></a>
-                                    <div id="yincang2"  onMouseOver="document.getElementById('yincang2').style.display = 'block'" onMouseOut="document.getElementById('yincang2').style.display = 'none'" style=" display:none; background-color:#FFF; border:1px solid #CCC; z-index:200; position:absolute; right:10px; text-align:center; width:100px;">
-                                        <ul style="list-style-type:none; margin-left:-30px; padding-right:10px; " >
-                                          <li>分享</li>
-                                          <li>喜欢Ta</li>
-                                          <li>备注</li>
-                                          <li>关注Ta</li>
-                                          <li>屏蔽Ta</li>
-                                          <li>举报</li>
-                                        </ul>
-                                   </div>
-                            </div>
-                            <div style="height:30px;"></div>
-                        </div> 
-                        <!--单一图片 宽度-->
-                        <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
-                        	<!--头条字样--> 
-                            <button class=" button-small float-right button bg-red hidden ">今日头条</button>
-                        	<img class="img-border radius float-left point" width="60" src="u=4179546593,3631561214&fm=58.jpg" />
-                            <a class="margin-left text-big" style="top:0px;" href="#">Jay超级粉丝</a>
-                            <br />
-                            <label class="height-big margin-left text-small text-main">11:20</label><label class="text-small margin-left text-main">阅读(272)</label>
-                            <!--内容部分-->
-                            <div class="dynamic_content bg-white padding radius border " >
-                            	<label>5.单一图片最高宽度为父框架的330px</label><br />
-                            	<div class="border point form-inline margin-small-top"  >
-                                	<img class="dynamic_img_big" src="background.jpg">	
-                                </div> 
-                            </div>
-                            <!--操作部分-->
-                            <div class="button-group margin-top dynamic_btn_group">
-                                    <a class="text-blue point margin-big-right"><span class="icon-thumbs-o-up margin-small-right"></span>赞3(7)</a>
-                                    <a class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(4)</a>
-                                    <a class="text-yellow point margin-big-right"><span class="icon-file-image-o margin-small-right"></span>关注Ta</a>
-                                    <a onMouseOver="document.getElementById('yincang3').style.display = 'block'" onMouseOut="document.getElementById('yincang3').style.display = 'none'" class="text-red point margin-big-right"><span class="icon-ellipsis-v margin-small-right"></span>其他<span class="arrow"></span></a>
-                                    <div id="yincang3"  onMouseOver="document.getElementById('yincang3').style.display = 'block'" onMouseOut="document.getElementById('yincang3').style.display = 'none'" style=" display:none; background-color:#FFF; border:1px solid #CCC; z-index:200; position:absolute; right:10px; text-align:center; width:100px;">
-                                        <ul style="list-style-type:none; margin-left:-30px; padding-right:10px; " >
-                                          <li>分享</li>
-                                          <li>喜欢Ta</li>
-                                          <li>备注</li>
-                                          <li>关注Ta</li>
-                                          <li>屏蔽Ta</li>
-                                          <li>举报</li>
-                                        </ul>
-                                   </div>
-                            </div>
-                            <div style="height:30px;"></div>
-                        </div> 
-                        <!--单一图片 宽度-->
-                        <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
-                        	<!--头条字样--> 
-                            <button class=" button-small float-right button bg-red hidden ">今日头条</button>
-                        	<img class="img-border radius float-left point" width="60" src="u=4179546593,3631561214&fm=58.jpg" />
-                            <a class="margin-left text-big" style="top:0px;" href="#">Jay超级粉丝</a>
-                            <br />
-                            <label class="height-big margin-left text-small text-main">11:20</label><label class="text-small margin-left text-main">阅读(272)</label>
-                            <!--内容部分-->
-                            <div class="dynamic_content bg-white padding radius border " >
-                            	<label>6.如果已是关注的人，则隐藏关注按钮。7.自己赞的次数在前面，括号里是总的赞次数。8.评论不显示自己评论了多少次</label><br />
-                            	<div class="border point form-inline margin-small-top"  >
-                                	<img class="dynamic_img_big" src="b24343c5a0f65dc4af2b03e74577d0030e9cce71185fc-gArxKw_fw320.jpg">	
-                                </div> 
-                            </div>
-                            <!--操作部分-->
-                            <div class="button-group margin-top dynamic_btn_group">
-                                    <a class="text-blue point margin-big-right"><span class="icon-thumbs-o-up margin-small-right"></span>赞3(7)</a>
-                                    <a class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(4)</a>
-                                    <a class="text-yellow point margin-big-right"><span class="icon-file-image-o margin-small-right"></span>关注Ta</a>
-                                    <a onMouseOver="document.getElementById('yincang4').style.display = 'block'" onMouseOut="document.getElementById('yincang4').style.display = 'none'" class="text-red point margin-big-right"><span class="icon-ellipsis-v margin-small-right"></span>其他<span class="arrow"></span></a>
-                                    <div id="yincang4"  onMouseOver="document.getElementById('yincang4').style.display = 'block'" onMouseOut="document.getElementById('yincang4').style.display = 'none'" style=" display:none; background-color:#FFF; border:1px solid #CCC; z-index:200; position:absolute; right:10px; text-align:center; width:100px;">
-                                        <ul style="list-style-type:none; margin-left:-30px; padding-right:10px; " >
-                                          <li>分享</li>
-                                          <li>喜欢Ta</li>
-                                          <li>备注</li>
-                                          <li>关注Ta</li>
-                                          <li>屏蔽Ta</li>
-                                          <li>举报</li>
-                                        </ul>
-                                   </div>
-                            </div>
-                            <div style="height:30px;"></div>
-                        </div> 
-                        <!--视频、动态图和高级动态-->
-                        <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
-                        	<!--头条字样--> 
-                            <button class=" button-small float-right button bg-red hidden ">今日头条</button>
-                        	<img class="img-border radius float-left point" width="60" src="u=4179546593,3631561214&fm=58.jpg" />
-                            <a class="margin-left text-big" style="top:0px;" href="#">Jay超级粉丝</a>
-                            <br />
-                            <label class="height-big margin-left text-small text-main">11:20</label><label class="text-small margin-left text-main">阅读(272)</label>
-                            <!--内容部分-->
-                            <div class="dynamic_content bg-white padding radius border " >
-                            	<label>9.视频、动态图、高级动态都占一个格子，至多有一个视频，至多有一个高级动态，至多有三个动态图。</label><br />
+                            	<label><%=dynamic.getContent() %></label><br />
+                            	<%
+                            		// 如果动态包含图片
+                            		List<UserImage> images = dynamic.getUserimage();
+                            		if (images != null && images.size() != 0) {
+                            	%>
                             	<div class="border form-inline"  >
                                 	<img class="dynamic_img_small" src="videos.png">	
                                 </div>
@@ -253,6 +183,9 @@ UserInfo user = account.getUserinfo();
                             	<div class="border form-inline" >		
                                 	<img class="dynamic_img_small" src="aaa.png">
                                 </div>
+                                <%
+                            		}
+                                %>
                             </div>
                             <!--操作部分-->
                             <div class="button-group margin-top dynamic_btn_group">
@@ -273,7 +206,8 @@ UserInfo user = account.getUserinfo();
                             </div>
                             <div style="height:30px;"></div>
                         </div> 
-                        <!--查看详情示例-->
+                        <% } %>
+                        <!--动态-->
                         <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
                             <!--头条字样--> 
                             <button class=" button-small float-right button bg-red hidden ">今日头条</button>
@@ -467,25 +401,11 @@ UserInfo user = account.getUserinfo();
                                         </div>
                                </div>
                             </div>
-                        </div>
-                    
-                    
-                    
-                    
-                    
-                    
+                        </div>       
+                        <!-- 空白div 用于异步更新  -->
+                        <div id="empty"></div>      
                 </div><!--main-width-->
             </div><!--main-color-->
-             
-            
-            
-            
-            
-            
-            
-            
-    
-
 	</div><!--！所有-->
 <script> /*example里的切换js*/
 	var comment_value = 1 ;
