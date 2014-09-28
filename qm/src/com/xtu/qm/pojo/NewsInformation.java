@@ -17,6 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.IndexColumn;
 /**
  * 动态等消息
  * @author feng
@@ -67,7 +71,23 @@ public class NewsInformation implements Serializable{
 	 * 如动态 失物招领
 	 */
 	public enum NewsInfoType {
-		DYNAMIC
+		DYNAMIC(0),
+		DYNAMIC_RESPONSE(1);
+		
+		private final int value;
+		
+		private NewsInfoType(int value) {
+			this.value = value;
+		}
+		
+		@Override
+		public String toString() {
+			return this.value + "";
+		}
+		
+		public int getValue() {
+			return this.value;
+		}
 	}
 	@Column(name="type",unique=false,nullable=true,length=5000)
 	private NewsInfoType type;
@@ -87,10 +107,16 @@ public class NewsInformation implements Serializable{
 	/**
 	 * 回复列表
 	 */
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
-	@JoinColumn(name="newsid")
-	private List<responseInformation> response;
-
+	@Fetch(FetchMode.SUBSELECT)
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="responseTo")
+	private List<NewsInformation> response;
+	
+	/**
+	 * 当作为回复信息时使用
+	 */
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="responseToId")
+	private NewsInformation responseTo;
 	
 	public NewsInformation() {
 		super();
@@ -99,7 +125,7 @@ public class NewsInformation implements Serializable{
 	public NewsInformation(long id, Date releasetime,
 			List<UserImage> userimage, int readnumber, String content,
 			NewsInfoType type, Card card, List<zanInformation> zaninform,
-			List<responseInformation> response, AccountInfo author) {
+			List<NewsInformation> response, AccountInfo author, NewsInformation responseTo) {
 		super();
 		this.id = id;
 		this.releasetime = releasetime;
@@ -110,6 +136,7 @@ public class NewsInformation implements Serializable{
 		this.card = card;
 		this.zaninform = zaninform;
 		this.response = response;
+		this.responseTo = responseTo;
 	}
 
 	public long getId() {
@@ -184,7 +211,7 @@ public class NewsInformation implements Serializable{
 		this.zaninform = zaninform;
 	}
 
-	public List<responseInformation> getResponse() {
+	public List<NewsInformation> getResponse() {
 		if(null==response)
 		{
 			response=new ArrayList();
@@ -192,7 +219,7 @@ public class NewsInformation implements Serializable{
 		return response;
 	}
 
-	public void setResponse(List<responseInformation> response) {
+	public void setResponse(List<NewsInformation> response) {
 		this.response = response;
 	}
 	
@@ -202,6 +229,17 @@ public class NewsInformation implements Serializable{
 	
 	public AccountInfo getAuthor() {
 		return this.author;
+	}
+	
+	public void setResponseTo(NewsInformation n) {
+		this.responseTo = n;
+	}
+	
+	public NewsInformation getResponseTo() {
+		if (response == null) {
+			response = new ArrayList<NewsInformation>();
+		}
+		return this.responseTo;
 	}
 
 	@Override

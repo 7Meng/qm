@@ -20,7 +20,7 @@ public class BeanFactory {
 	}
 	
 	public static UploadService getUploadService() {
-		return (UploadService)MyBeanFactory.getBeanFactroy().getBean("UploadService");
+		return (UploadService) MyBeanFactory.getBeanFactroy().getBean("UploadService");
 	}
 	
 	public static PageService getPageService() {

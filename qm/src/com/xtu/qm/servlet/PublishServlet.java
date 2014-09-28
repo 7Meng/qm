@@ -1,6 +1,7 @@
 package com.xtu.qm.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class PublishServlet extends HttpServlet {
 		news.setContent(dynamicMsg);
 		news.setAuthor(account);
 		news.setType(NewsInfoType.DYNAMIC);
+		news.setResponse(new ArrayList<NewsInformation>());
 		// 更新httpSession的account info
 		list.add(news);
 		// 只需保存news即可

@@ -33,6 +33,12 @@ public class DynamicShowServlet extends HttpServlet {
 		List<NewsInformation> list = service.getOnePage(NewsInformation.class, 0, 10);
 		if (list == null || list.size() == 0) {
 			response.sendRedirect("dynamic.jsp");
+			return;
+		}
+		
+		for (NewsInformation n: list) {
+			List<NewsInformation> l = n.getResponse();
+			System.out.println(l.size());
 		}
 		
 		request.setAttribute("DynamicSet", list);

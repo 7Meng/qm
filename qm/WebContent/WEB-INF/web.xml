@@ -91,4 +91,12 @@
         <servlet-name>DynamicShowServlet</servlet-name>
         <url-pattern>/DynamicShowServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PostCommentServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.PostCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostCommentServlet</servlet-name>
+        <url-pattern>/PostCommentServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

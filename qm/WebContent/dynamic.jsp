@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="com.xtu.qm.pojo.*" %>
+<%@ page import="com.xtu.qm.utils.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -96,47 +97,6 @@ if (list == null) {
                                     <button type="button" class="button button-small border-green icon-edit (alias) text-green text-default"> 高级动态</button>
                                   </div>
                         </div>
-                        <!--今日头条--> 
-                        <div class="layout_left bg-white padding radius border border-sub margin-top relactive  " >		
-                        	<!--头条字样--> 
-                            <button class=" button-small float-right button bg-red">今日头条</button>
-                        	<img class="img-border radius float-left point" width="60" src="u=4179546593,3631561214&fm=58.jpg" />
-                            <a class="margin-left text-big" style="top:0px;" href="#">Jay超级粉丝</a>
-                            <br />
-                            <label class="height-big margin-left text-small text-main">11:20</label><label class="text-small margin-left text-main">阅读(272)</label>
-                            <!--内容部分-->
-                            <div class="dynamic_content bg-white padding radius border " >
-                            	<label>1.动态文字部分最多显示140个字，这是字数限制。2.不显示空格和回车。3.图片三个框限制大小（当图片为2张或3张时，每张长宽最大为150px）（若3张图片都是正方形，正好填满所有的空间）</label><br />
-                            	<div class="border point form-inline"  >
-                                	<img class="dynamic_img_small" src="head.jpg">	
-                                </div>
-                            	<div class="border point form-inline margin-small-left margin-small-right margin-small-top" >		
-                                	<img class="dynamic_img_small" src="b24343c5a0f65dc4af2b03e74577d0030e9cce71185fc-gArxKw_fw320.jpg">
-                                </div>
-                            	<div class="borde pointr form-inline" >		
-                                	<img class="dynamic_img_small" src="lifephoto.jpg">
-                                </div>
-                            </div> 
-                            <!--操作部分-->
-                            <div class="button-group margin-top dynamic_btn_group">
-                                    <a class="text-blue point margin-big-right"><span class="icon-thumbs-o-up margin-small-right"></span>赞3(7)</a>
-                                    <a class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(4)</a>
-                                    <a class="text-yellow point margin-big-right"><span class="icon-file-image-o margin-small-right"></span>关注Ta</a>
-                                    <a onMouseOver="document.getElementById('yincang1').style.display = 'block'" onMouseOut="document.getElementById('yincang1').style.display = 'none'" class="text-red point margin-big-right"><span class="icon-ellipsis-v margin-small-right"></span>其他<span class="arrow"></span></a>
-                                    <div id="yincang1"  onMouseOver="document.getElementById('yincang1').style.display = 'block'" onMouseOut="document.getElementById('yincang1').style.display = 'none'" style=" display:none; background-color:#FFF; border:1px solid #CCC; z-index:200; position:absolute; right:10px; text-align:center; width:100px;">
-                                        <ul style="list-style-type:none; margin-left:-30px; padding-right:10px; " >
-                                          <li>分享</li>
-                                          <li>喜欢Ta</li>
-                                          <li>备注</li>
-                                          <li>关注Ta</li>
-                                          <li>屏蔽Ta</li>
-                                          <li>举报</li>
-                                        </ul>
-                                   </div>
-                                     
-                            </div>
-                            <div style="height:30px;"></div>
-                        </div> 
                         <% for (NewsInformation dynamic: list) {
                         	offset++;
                         	
@@ -144,16 +104,13 @@ if (list == null) {
                         	UserInfo dynamicUser = dynamicAccount.getUserinfo();
                         	
                         	// 计算时间
-                        	Calendar cal = Calendar.getInstance();
-                        	cal.setTime(dynamic.getReleasetime());
-                        	String hour = "" + cal.get(Calendar.HOUR_OF_DAY);
-                        	String minute;
-                            if (cal.get(Calendar.MINUTE) > 10) {
-                            	minute = "" + cal.get(Calendar.MINUTE);
-                            } else {
-                            	minute = "0" + cal.get(Calendar.MINUTE);
-                            }
-                            String date = hour + ":" + minute;
+                        	String date = ToStringUtil.dateToString(dynamic.getReleasetime());
+                        	// 详情页<div> ID 号码
+                        	String detail = "detail" + dynamic.getId();
+                        	// 输入评论框ID
+                        	String commentInput = "commentInput" + dynamic.getId(); 
+                        	// 评论列表
+                        	List<NewsInformation> commentList = dynamic.getResponse();
                         %>
                         <!--动态-->
                         <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
@@ -190,7 +147,7 @@ if (list == null) {
                             <!--操作部分-->
                             <div class="button-group margin-top dynamic_btn_group">
                                     <a class="text-blue point margin-big-right"><span class="icon-thumbs-o-up margin-small-right"></span>赞3(7)</a>
-                                    <a class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(4)</a>
+                                    <a onClick="show_comment('<%=detail %>')" class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(<%=commentList.size()%>)</a>
                                     <a class="text-yellow point margin-big-right"><span class="icon-file-image-o margin-small-right"></span>关注Ta</a>
                                     <a onMouseOver="document.getElementById('yincang5').style.display = 'block'" onMouseOut="document.getElementById('yincang5').style.display = 'none'" class="text-red point margin-big-right"><span class="icon-ellipsis-v margin-small-right"></span>其他<span class="arrow"></span></a>
                                     <div id="yincang5"  onMouseOver="document.getElementById('yincang5').style.display = 'block'" onMouseOut="document.getElementById('yincang5').style.display = 'none'" style=" display:none; background-color:#FFF; border:1px solid #CCC; z-index:200; position:absolute; right:10px; text-align:center; width:100px;">
@@ -205,160 +162,52 @@ if (list == null) {
                                    </div>
                             </div>
                             <div style="height:30px;"></div>
-                        </div> 
-                        <% } %>
-                        <!--动态-->
-                        <div class="layout_left bg-white padding radius border border-sub margin-top relactive " >		
-                            <!--头条字样--> 
-                            <button class=" button-small float-right button bg-red hidden ">今日头条</button>
-                            <img class="img-border radius float-left point" width="60" src="u=4179546593,3631561214&fm=58.jpg" />
-                            <a class="margin-left text-big" style="top:0px;" href="#">Jay超级粉丝</a>
-                            <br />
-                            <label class="height-big margin-left text-small text-main">11:20</label><label class="text-small margin-left text-main">阅读(272)</label>
-                            <!--内容部分-->
-                            <div id="example" class="dynamic_content bg-white padding radius border " >
-                                <label>10.点击本条动态里的图标查看。（本div里的id名为临时设置的）</label><br />
-                                <div class="border form-inline point"  >
-                                    <img onClick="show_vedio()" class="dynamic_img_small" src="videos.png">	
-                                </div>
-                                <div onClick="show_gif()" class="border point form-inline margin-small-left margin-small-right margin-small-top" >		
-                                    <img class="dynamic_img_small" src="20140831054308926_easyicon_net_1067.png">
-                                </div>
-                                <div onClick="show_super()" class="border point form-inline" >		
-                                    <img class="dynamic_img_small" src="aaa.png">
-                                </div>
-                            </div>
-                            <!--内容的详情部分 视频-->
-                            <div id="example_vedio" class="dynamic_content border bg-white padding radius" style="display:none">
-                                <label>10.点击本 图标查看。（本div里的id名为临时设置的）</label><br />		
-                                <a class="text-sub point" onClick="show_maincontent()" ><span class="icon-arrow-up margin-small-right margin-left"></span>收起</a>
-                                <embed class="margin-small-top border" src="http://player.youku.com/player.php/sid/XNzY0OTE2MzQ4/v.swf" allowFullScreen="true" quality="high" width="484" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
-                            </div>
-                            <!--内容的详情部分 动图-->
-                            <div id="example_gif" class="dynamic_content border bg-white padding radius" style="display:none">
-                                <label>10.点击本条动态里的图标查看。（本div里的id名为临时设置的）</label><br />		
-                                <a class="text-sub point" onClick="show_maincontent()" ><span class="icon-arrow-up margin-small-right margin-left"></span>收起</a>
-                                <div class="border padding"><img onClick="show_maincontent()"  class="point dynamic_img_maincontent" src="b24343c5a0f65dc4af2b03e74577d0030e9cce71185fc-gArxKw_fw320.jpg" />
-                                </div>
-                            </div>
-                            <!--内容的详情部分 高级动态-->
-                            <div id="example_super" class="dynamic_content border bg-white padding radius" style="display:none">
-                                <label>10.点击本条动态里的图标查看。（本div里的id名为临时设置的）</label><br />		
-                                <a class="text-sub point" onClick="show_maincontent()" ><span class="icon-arrow-up margin-small-right margin-left"></span>收起</a>
-                                <div class="border padding dynamic_div_super"  ><h1 class="text-center">今日新闻</h1><p>据新华社最新新闻，美国纽约遭遇大规模恐怖袭击，目前伤亡情况不详啊呀呀呀呀.</p><img width="464px" src="background.jpg"/></div>
-                            </div>
-                            <!--操作部分-->
-                            <div class="button-group margin-top dynamic_btn_group">
-                                    <a class="text-blue point margin-big-right"><span class="icon-thumbs-o-up margin-small-right"></span>赞3(7)</a>
-                                    <a onClick="show_comment()" class="text-green point margin-big-right"><span class="icon-pencil-square-o margin-small-right"></span>评论(4)</a>
-                                    <a class="text-yellow point margin-big-right"><span class="icon-file-image-o margin-small-right"></span>关注Ta</a>
-                                    <a onMouseOver="document.getElementById('yincang6').style.display = 'block'" onMouseOut="document.getElementById('yincang6').style.display = 'none'" class="text-red point margin-big-right"><span class="icon-ellipsis-v margin-small-right"></span>其他<span class="arrow"></span></a>
-                                    <div id="yincang6"  onMouseOver="document.getElementById('yincang6').style.display = 'block'" onMouseOut="document.getElementById('yincang6').style.display = 'none'" style=" display:none; background-color:#FFF; border:1px solid #CCC; z-index:200; position:absolute; right:10px; text-align:center; width:100px;">
-                                        <ul style="list-style-type:none; margin-left:-30px; padding-right:10px; " >
-                                          <li>分享</li>
-                                          <li>喜欢Ta</li>
-                                          <li>备注</li>
-                                          <li>关注Ta</li>
-                                          <li>屏蔽Ta</li>
-                                          <li>举报</li>
-                                        </ul>
-                                   </div>
-                            </div>
-                            <div style="height:30px;"></div>
                             <!--评论详情页-->
-                            <div id="example_comment" class="divComment dynamic_content margin-top border" style="display:none">
+                            <div id="<%=detail %>" class="divComment dynamic_content margin-top border" style="display:none">
                                 <!--快速评论栏-->
                                 <div class="form-group margin-small-left margin-top margin-right">
                                     <div class="field">
-                                      <div class="input-group"><span class="addbtn"></span><input type="text" class="input input-small" name="keywords" size="50" placeholder="写下评论，给楼主动力吧！" /><span class="addbtn"><button type="button" class="button button-small" style="height:28px;">评论</button></span></div>
+                                    <!-- 应该是异步更新的，这里暂时是form形式 -->
+                                    	<form action="PostCommentServlet" method="post">
+                                      		<div class="input-group">
+                                      			<input type="hidden" name="commentId" value="<%=dynamic.getId() %>">
+                                      			<input type="hidden" name="actionType" value="postDynamicComment">
+                                      			<span class="addbtn"></span><input id="<%=commentInput %>" type="text" class="input input-small" name="commentContent" size="50" placeholder="写下评论，给楼主动力吧！" /><span class="addbtn"><button type="submit" class="button button-small" style="height:28px;">评论</button></span></div>
+                                      	</form>
                                     </div>
                                </div>
                                <!--评论列表-->
                                <div class="margin-left">
-                               	 	<label onClick="show_pinglunliebiao()" class="margin-big-left point">评论</label><label onClick="show_dianzanliebiao()" class="margin-big-left text-main point">点赞榜</label><br>
+                               	 	<label onClick="show_pinglunliebiao('<%="commentList" + dynamic.getId() %>', '<%="zanList" + dynamic.getId() %>')" class="margin-big-left text-blue point">评论</label>
+                               	 	<label onClick="show_dianzanliebiao('<%="commentList" + dynamic.getId() %>', '<%="zanList" + dynamic.getId() %>')" class="margin-big-left text-main point">点赞榜</label><br>
                                       	<!--评论列表-->
-                                        <div id="pinglun_list">
-                                            <!--第1条评论-->
-                                            <div class="margin-top">
+                                        <div id="<%="commentList" + dynamic.getId() %>">
+                                        	<%
+                               					for (NewsInformation comment: commentList) {
+                               						AccountInfo commentAccount = comment.getAuthor();
+                               						// 计算时间
+                               						String commentDate = ToStringUtil.dateToString(comment.getReleasetime());
+                               				%>
+                                            <!-- 一条评论 -->
+                                            <div id="<%="comment" + dynamic.getId() %>" class="margin-top">
                                                 <table width="100%" border="0">
                                                     <tbody><tr>
-                                                        <td valign="top" width="40px"><img class="margin-right" src="u=2107292801,3797874346&amp;fm=58.jpg" style="width:40px; cursor:pointer;"></td>
+                                                        <td valign="top" width="40px"><img class="margin-right" src="<%=account.getUserinfo().getUserLogo().getSmallimageUrl() %>" style="width:40px; cursor:pointer;"></td>
                                                         <td valign="top">
-                                                            <a style="cursor:pointer;color:#F37021">范冰冰</a>:
-                                                            <label>哈哈哈哈……你今天的经历太有趣了，我和我的室友都笑死了……</label>					<br>
-                                                            <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;">5分钟前</label>
-                                                            <img src="评论-ok.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			
-                                                            <!--楼中楼 1-->
-                                                            <div class="margin-small-top">
-                                                                <table width="100%" border="0">
-                                                                <tbody><tr><td width="40px"><img class="margin-right" src="a82bb38de98345d64a797f2bb84ee753f36489cf22ba7-YX9oG9_fw320.jpg" style="width:40px;cursor:pointer;"></td>
-                                                                <td valign="top">
-                                                                    <a style="cursor:pointer;color:#F37021">周杰伦</a>回复<a style="cursor:pointer;color:#F37021">范冰冰</a>:
-                                                                    <label>笑你妹哦</label>	
-                                                                    <br>
-                                                                    <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;">5分钟前</label>
-                                                                    <img src="评论-ok.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			
-                                                                </td></tr></tbody></table>
-                                                            </div>
-                                                            <!--楼中楼 2-->
-                                                            <div class="margin-small-top">
-                                                                <table width="100%" border="0">
-                                                                <tbody><tr><td width="40px"><img class="margin-right" src="IMG_20140720_125930.jpg" style="cursor:pointer;width:40px;"></td>
-                                                                <td valign="top">
-                                                                    <a style="cursor:pointer;color:#F37021">一号粉丝</a>回复<a style="cursor:pointer;color:#F37021">周杰伦</a>:
-                                                                    <label>你谁啊！什么意思啊？啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</label>	
-                                                                    <br>
-                                                                    <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;">5分钟前</label>
-                                                                    <img src="评论-ok.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			
-                                                                </td></tr></tbody></table>
-                                                            </div>
-                                                            
+                                                            <a style="cursor:pointer;color:#F37021"><%=commentAccount.getUsername() %></a>:
+                                                            <label><%=comment.getContent() %></label>					<br>
+                                                            <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;"><%=commentDate %></label>
+                                                            <img onclick="" src="image/comment.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			                                                            
                                                         </td>
                                                     </tr>
                                                 </tbody></table>
                                             </div>
-                                            <!--第2条评论-->
-                                            <div class="margin-top">
-                                                <table width="100%" border="0">
-                                                    <tbody><tr>
-                                                        <td valign="top" width="40px"><img class="margin-right" src="u=2107292801,3797874346&amp;fm=58.jpg" style="width:40px; cursor:pointer;"></td>
-                                                        <td valign="top">
-                                                            <a style="cursor:pointer;color:#F37021">范冰冰</a>:
-                                                            <label>哈哈哈哈……你今天的经历太有趣了，我和我的室友都笑死了……</label>					<br>
-                                                            <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;">5分钟前</label>
-                                                            <img src="评论-ok.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			
-                                                            <!--楼中楼 1-->
-                                                            <div class="margin-small-top">
-                                                                <table width="100%" border="0">
-                                                                <tbody><tr><td width="40px"><img class="margin-right" src="a82bb38de98345d64a797f2bb84ee753f36489cf22ba7-YX9oG9_fw320.jpg" style="width:40px;cursor:pointer;"></td>
-                                                                <td valign="top">
-                                                                    <a style="cursor:pointer;color:#F37021">周杰伦</a>回复<a style="cursor:pointer;color:#F37021">范冰冰</a>:
-                                                                    <label>笑你妹哦</label>	
-                                                                    <br>
-                                                                    <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;">5分钟前</label>
-                                                                    <img src="评论-ok.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			
-                                                                </td></tr></tbody></table>
-                                                            </div>
-                                                            <!--楼中楼 2-->
-                                                            <div class="margin-small-top">
-                                                                <table width="100%" border="0">
-                                                                <tbody><tr><td width="40px"><img class="margin-right" src="IMG_20140720_125930.jpg" style="cursor:pointer;width:40px;"></td>
-                                                                <td valign="top">
-                                                                    <a style="cursor:pointer;color:#F37021">一号粉丝</a>回复<a style="cursor:pointer;color:#F37021">周杰伦</a>:
-                                                                    <label>你谁啊！什么意思啊？啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</label>	
-                                                                    <br>
-                                                                    <label class="text-main text-small" style=" vertical-align:middle;  line-height:18px;">5分钟前</label>
-                                                                    <img src="评论-ok.png" style="width:18px;  cursor:pointer; position:absolute; margin-left:10px; margin-top:3px;">			
-                                                                </td></tr></tbody></table>
-                                                            </div>
-                                                            
-                                                        </td>
-                                                    </tr>
-                                                </tbody></table>
-                                            </div>
+                                            <%
+                               					}
+                                            %>
                                         </div>
                                         <!--点赞列表-->
-                                        <div id="dianzan_list" style="display:none">
+                                        <div id="<%="zanList" + dynamic.getId() %>" style="display:none">
                                         	<div class="margin-top margin-bottom">
                                                 <table width="100%" border="0">
                                                     <tbody>
@@ -401,14 +250,15 @@ if (list == null) {
                                         </div>
                                </div>
                             </div>
-                        </div>       
+                        </div> 
+                        <% } %>    
                         <!-- 空白div 用于异步更新  -->
                         <div id="empty"></div>      
                 </div><!--main-width-->
             </div><!--main-color-->
 	</div><!--！所有-->
+	
 <script> /*example里的切换js*/
-	var comment_value = 1 ;
 	var dianzanbang_value = 1;
 	function show_vedio () {
 		document.getElementById('example_vedio').style.display = 'block';
@@ -428,24 +278,24 @@ if (list == null) {
 		document.getElementById('example_gif').style.display = 'none';
 		document.getElementById('example_super').style.display = 'none';
 	}
-	function show_comment () {
-		if(comment_value == 1)
-		{ 
-			comment_value = 0;
-			document.getElementById('example_comment').style.display ='block';}
-		else
-		{ 
-			comment_value = 1;
-			document.getElementById('example_comment').style.display = 'none';}
+	
+	function show_comment (commentId) {
+		if (document.getElementById(commentId).style.display == 'block')
+			document.getElementById(commentId).style.display ='none';
+		else 
+			document.getElementById(commentId).style.display ='block';
 	}
-	function show_dianzanliebiao () {
-			document.getElementById('dianzan_list').style.display ='block';
-			document.getElementById('pinglun_list').style.display ='none';
+	
+	function show_dianzanliebiao (commentListId, zanListId) {
+			document.getElementById(zanListId).style.display ='block';
+			document.getElementById(commentListId).style.display ='none';
 	}
-	function show_pinglunliebiao () {
-			document.getElementById('dianzan_list').style.display ='none';
-			document.getElementById('pinglun_list').style.display ='block';
+	
+	function show_pinglunliebiao (commentListId, zanListId) {
+			document.getElementById(zanListId).style.display ='none';
+			document.getElementById(commentListId).style.display ='block';
 	}
+	
 	function changeDetails(){   /*显示更多菜单*/
 		if(document.getElementById('details').style.display=='none')
 			document.getElementById('details').style.display='block';
