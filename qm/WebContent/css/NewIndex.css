@@ -6,10 +6,10 @@
 #nav_fixed {
 				position:fixed;left:0px;top:0px; width:100%; z-index:100;    }
 div.main_space { height:40px; width:100% }
-#header_bg {
+#header_bg {							/*background-image: url(http://cnc.i.gtimg.cn/qzone/space_item/orig/7/101239_top.jpg)*/
 			 	background-image: url(http://cnc.i.gtimg.cn/qzone/space_item/orig/7/101239_top.jpg);background-repeat: no-repeat no-repeat;  height:400px;background-position: 50% 0%; margin-top:40px; width:100%; position:absolute; }
 div.main_color {
-				width:100%;background-color:rgb(4,41,93)}
+				width:100%;background-color:rgb(4,41,93)}   /*rgb(4,41,93)*/
 div.main_width {
 				border: 0px solid #000;padding: 60px 0; position:relative;  margin:0 auto; width:850px;  }
 div.layout_left {
@@ -18,4 +18,55 @@ div.layout_right {
 				width:232px; float:right; min-height:100px;}
 img.lifeImage {
 				max-width:300px; max-height:300px; }
+div.dynamic_content {
+				margin-left:70px;}
+img.dynamic_img_small {
+				max-height:150px; max-width:150px;}
+img.dynamic_img_big {
+				max-height:220px; max-width:330px;}
+img.dynamic_img_maincontent {
+				width:464px;}
+div.dynamic_div_super {
+				width:484px;}
+div.dynamic_btn_group {
+			    position:absolute; right:10px;}
+div.relactive { 
+				position:relative;}
+img.point {
+				cursor:pointer;}
+a.point {
+				cursor:pointer;}
+div.point {
+				cursor:pointer;}
+label.point {
+				cursor:pointer;}
+div.divComment {
+				 
+
+/*如下为QQ表情的样式*/
+ .comment{width:680px; margin:20px auto; position:relative} 
+ .comment h3{height:28px; line-height:28px}  
+ .com_form{width:100%; position:relative} 
+ /*.input{width:99%; height:60px; border:1px solid #ccc}*/
+  .com_form p{height:28px; line-height:28px; position:relative}
+  span.emotion{width:42px; height:20px; background:url(icon.gif) no-repeat 2px 2px; 
+padding-left:20px; cursor:pointer}   
+span.emotion:hover{background-position:2px -28px}  
+ .qqFace{margin-top:4px;background:#fff;padding:2px;border:1px #dfe6f6 solid;} 
+  .qqFace table td{padding:0px;} 
+ .qqFace table td img{cursor:pointer;border:1px #fff solid;} 
+  .qqFace table td img:hover{border:1px #0066cc solid;}  #show{width:680px; margin:20px auto} 
+  
+
+
+
+
+
+
+
+
+
+
+
+
 

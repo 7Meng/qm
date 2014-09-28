@@ -86,8 +86,4 @@ public class UserDaoImp  extends BaseDaoImp<AccountInfo> implements UserDao{
 		}
 		return null;
 	}
-
-	
-	
-
 }

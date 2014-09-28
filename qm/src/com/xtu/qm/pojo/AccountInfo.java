@@ -110,7 +110,7 @@ public class AccountInfo implements Serializable{
 	 * 账户中有一个封装自己的用户个人信息
 	 * one to one
 	 */
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="userid")
 	private UserInfo userinfo;
 	/**

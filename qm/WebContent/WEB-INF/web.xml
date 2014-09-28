@@ -67,4 +67,36 @@
         <servlet-name>UploadLifePhotoServlet</servlet-name>
         <url-pattern>/UploadLifePhotoServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>PublishServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.PublishServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PublishServlet</servlet-name>
+        <url-pattern>/PublishServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DynamicShowServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.DynamicShowServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DynamicShowServlet</servlet-name>
+        <url-pattern>/DynamicShowServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DynamicUpdateServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.DynamicUpdateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DynamicShowServlet</servlet-name>
+        <url-pattern>/DynamicShowServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PostCommentServlet</servlet-name>
+        <servlet-class>com.xtu.qm.servlet.PostCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostCommentServlet</servlet-name>
+        <url-pattern>/PostCommentServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

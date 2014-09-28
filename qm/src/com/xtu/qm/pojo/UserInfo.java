@@ -106,7 +106,7 @@ public class UserInfo implements Serializable {
 	/**
 	 * 用户头像，区别于生活照
 	 */
-	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="userLogoid")
 	private UserImage userLogo;
 	
@@ -116,6 +116,7 @@ public class UserInfo implements Serializable {
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="userinfoid")
 	private List<Card> hasConcern;
+	
 	/**
 	 * 被关注列表
 	 */
@@ -351,9 +352,5 @@ public class UserInfo implements Serializable {
 				+ mutualConcern + ", likelist=" + likelist
 				+ ", mutuallikelist=" + mutuallikelist + ", islikelist="
 				+ islikelist + ", blacklist=" + blacklist + "]";
-	}
-	
-	
-	
-	
+	}	
 }
